@@ -35,7 +35,7 @@ namespace SeaBattleBot.Core.Controllers
 		{
 			if (!await MyValidator.ValidateMove(move))
 			{
-				return new MoveResult() { IsSuccess = false, ErrorMessage = "Данный ход не возможен" };
+				return new MoveResult() { IsSuccess = false, ErrorMessage = "This move is not possible" };
 			}
 			(byte i, byte j) = await Converter.ConvertMoveToIndex(move);
 			var field = await _gameStateService.GetCurrentEnemyField(chatId);
@@ -88,10 +88,10 @@ namespace SeaBattleBot.Core.Controllers
 			var playerField = await _gameStateService.GetCurrentPlayerField(chatId);
 			var enemyField = await _gameStateService.GetCurrentEnemyField(chatId);
 			return
-				"Ваше поле:\n" +
+				"Your field:\n" +
 				await _fieldController.GetFieldAsString(playerField) +
 				"\n" +
-				"Поле противника:\n" +
+				"Enemy field:\n" +
 				await _fieldController.GetEnemyFieldAsString(enemyField);
 		}
 		public async Task<GameStatus> GetGameStatus(long chatId)

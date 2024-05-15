@@ -199,7 +199,7 @@ namespace SeaBattleBot.Core.Controllers
 					return new MoveResult() { IsSuccess = true, IsHitted = true };
                 case 2: // Represent unattackable cell.
 				case 3: // Represent cell with ship that was hit.
-					return new MoveResult() { IsSuccess = false, ErrorMessage = "Данная клетка уже была атакована, выберите другой ход" };
+					return new MoveResult() { IsSuccess = false, ErrorMessage = "This cell has already been attacked, choose another move" };
 				default:
                     throw new ArgumentException("Unknown cell inditificator");
             }
@@ -283,6 +283,5 @@ namespace SeaBattleBot.Core.Controllers
 				}
 			}
 		}
-
 	}
 }

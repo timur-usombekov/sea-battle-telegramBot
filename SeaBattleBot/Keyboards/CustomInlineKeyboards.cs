@@ -10,7 +10,7 @@ namespace SeaBattleBot.Keyboards
 			{
 				new []
 				{
-					InlineKeyboardButton.WithCallbackData(text: "Случайно сгенерировать поле", callbackData: "random"),
+					InlineKeyboardButton.WithCallbackData(text: "Generate random field", callbackData: "random"),
 				},
 			});
 			return inlineKeyboard;

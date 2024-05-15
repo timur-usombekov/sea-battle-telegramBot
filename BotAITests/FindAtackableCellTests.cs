@@ -1,5 +1,9 @@
 using SeaBattleBot.Core.AI;
 using SeaBattleBot.Core.Controllers;
+using SeaBattleBot.Core.Domain.Contracts.Controllers;
+using SeaBattleBot.Core.Domain.Contracts.Services;
+using NSubstitute;
+using SeaBattleBot.Core.Services;
 
 namespace BotAITests
 {
@@ -8,11 +12,13 @@ namespace BotAITests
 		private readonly BotAI _botAI; 
 		public FindAtackableCellTests()
 		{
-			var shipController = new ShipController();
+            var shipController = new ShipController();
 			var fieldController = new FieldController(shipController);
-			_botAI = new BotAI(fieldController, shipController);
-		}
-		[Fact]
+			var enemyStateService = Substitute.For<IEnemyStateService>();
+			var gameStateService = Substitute.For<IGameStateService>();
+            _botAI = new BotAI(fieldController, shipController, enemyStateService, gameStateService);
+        }
+        [Fact]
 		public async Task FindAtackableCell_OneAtackableCellAround()
 		{
 			var field = new byte[5, 5]
